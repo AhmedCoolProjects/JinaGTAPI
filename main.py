@@ -1,5 +1,5 @@
 from flask import Flask, request
-from functions import coloration2
+from algos.coloration import Coloration
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -9,14 +9,17 @@ CORS(app)
 def index():
     return "<h1 style='color:red' >Greaaaaaaaaaaaat!</h1>"
 
-
 @app.route('/coloration', methods=['POST'])
 def coloration():
-    g = request.get_json("mygraph")
-    return {"response":coloration2(g["mygraph"])}
+    g = request.get_json("mygraph")["mygraph"]
+    colorationObject = Coloration(g)
+    return {"response":colorationObject.main()}
+
+
+
+
 
 '''
-@app.route('/coloration', methods=['POST'])
 @app.route('/dijkstra', methods=['POST'])
 @app.route('/bellman', methods=['POST'])
 @app.route('/kruskal', methods=['POST'])
@@ -24,5 +27,5 @@ def coloration():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
