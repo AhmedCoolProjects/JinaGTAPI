@@ -1,4 +1,5 @@
 # [[1,2,3,4,5,6,7,8,9,10],[[1,2],[1,6],[3,2],[4,5],[6,5],[6,3],[4,7],[5,8],[7,8],[8,10],[8,9],[9,10]]]
+# BY ANAS
 class Coloration():
     def __init__(self, graph):
         self.graph = graph
@@ -37,6 +38,15 @@ class Coloration():
                             D[i].append(color)
                             sommetTraite += 1
             color+=1
-        result = {"colorsCount":color,"finalList":D}
+        COLORS_LIST = ["red","blue","green","yellow","orange","purple","brown","pink","grey","black"]
+        D2 = []
+        for sommetList in D:
+            Dtest = {"sommet":"","deg":"","color":""}
+            Dtest["sommet"] = sommetList[0]
+            Dtest["deg"] = sommetList[1]
+            Dtest["color"] = COLORS_LIST[sommetList[2]]
+            D2.append(Dtest)
+
+        result = {"colorsCount":color,"finalList":D2}
         return result
 
